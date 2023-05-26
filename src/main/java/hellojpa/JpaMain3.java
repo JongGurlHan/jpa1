@@ -15,11 +15,11 @@ public class JpaMain3 {
         tx.begin();
 
         try{
-            Member member1 = new Member(150L, "A");
-            Member member2 = new Member(160L, "A");
+          //  Member member1 = new Member(150L, "A");
+          //  Member member2 = new Member(160L, "A");
 
-            em.persist(member1);
-            em.persist(member2);
+         //   em.persist(member1);
+         //   em.persist(member2);
             System.out.println("============================");
 
             tx.commit();

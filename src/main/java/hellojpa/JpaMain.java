@@ -24,7 +24,7 @@ public class JpaMain {
 //            em.persist(member);
 
             Member findMember = em.find(Member.class, 1L);
-            findMember.setName("HelloJPA");
+           // findMember.setName("HelloJPA");
 
             //수정할 때 em.persist안해도 된다!
             //jpa는 트렌젝션 커밋하는 시점에 변경이됐는지 체크한다.
@@ -36,7 +36,7 @@ public class JpaMain {
                     .getResultList();
 
             for (Member member : result) {
-                System.out.println("member.name = " + member.getName());
+           //     System.out.println("member.name = " + member.getName());
             }
 
 

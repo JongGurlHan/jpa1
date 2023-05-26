@@ -15,8 +15,8 @@ public class JpaMain_flush {
         tx.begin();
 
         try{
-            Member member = new Member(200L, "member200");
-            em.persist(member);
+       //     Member member = new Member(200L, "member200");
+         //   em.persist(member);
 
             em.flush(); //강제로 flush
             System.out.println("============================");

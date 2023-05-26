@@ -16,7 +16,7 @@ public class JpaMain_detatch {
 
         try{
             Member member = em.find(Member.class, 200L);
-            member.setName("AAAA");
+         //   member.setName("AAAA");
             em.detach(member); //준영속 전환
 
             System.out.println("============================");
