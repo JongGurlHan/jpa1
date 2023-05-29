@@ -10,13 +10,35 @@ import java.util.Date;
 @Getter @Setter
 public class Member {
 
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
+    @Column(name = "MEMBER_ID")
     private Long id;
 
-    @Column(name = "name", nullable = false, columnDefinition = "varchar(100) default 'EMPTY'")
+    @Column(name = "USERNAME")
     private String username;
+
+    @ManyToOne //연관관계의 주인
+    @JoinColumn(name = "TEAM_ID")
+    private Team team;
+
+    //연관관계 편의 메소드
+//    public void changeTeam(Team team) {
+//        this.team = team;
+//        team.getMembers().add(this);
+//    }
+
+    //    @Column(name = "TEAM_ID")
+//    private Long teamId;
+
+
+
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private Long id;
+//
+//    @Column(name = "name", nullable = false, columnDefinition = "varchar(100) default 'EMPTY'")
+//    private String username;
 
 //    private Integer age;
 //
