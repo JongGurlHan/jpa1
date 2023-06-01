@@ -18,9 +18,9 @@ public class Member {
     @Column(name = "USERNAME")
     private String username;
 
-    @ManyToOne //연관관계의 주인
-    @JoinColumn(name = "TEAM_ID")
-    private Team team;
+//    @ManyToOne //연관관계의 주인
+//    @JoinColumn(name = "TEAM_ID")
+//    private Team team;
 
     //연관관계 편의 메소드
 //    public void changeTeam(Team team) {
