@@ -1,10 +1,11 @@
-package hellojpa;
+package hellojpa.domain;
 
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter @Setter
@@ -17,6 +18,11 @@ public class Member {
 
     @Column(name = "USERNAME")
     private String username;
+
+    @OneToOne
+    @JoinColumn(name = "LOCKER_ID")
+    private Locker locker;
+
 
 //    @ManyToOne //연관관계의 주인
 //    @JoinColumn(name = "TEAM_ID")

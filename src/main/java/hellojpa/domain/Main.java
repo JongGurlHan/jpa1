@@ -1,4 +1,4 @@
-package hellojpa;
+package hellojpa.domain;
 
 public class Main {
     public static void main(String[] args) {
