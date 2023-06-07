@@ -22,23 +22,22 @@ public class JpaMain_8_1 {
 
         try{
 
-            Member member = new Member();
-            member.setUsername("hello");
+            Member member1 = new Member();
+            member1.setUsername("member1");
+            em.persist(member1);
 
-            em.persist(member);
+            Member member2 = new Member();
+            member2.setUsername("member2");
+            em.persist(member2);
 
             em.flush();
             em.clear();
 
+            Member m1 = em.find(Member.class, member1.getId());
+            Member m2 = em.find(Member.class, member2.getId());
 
-//            Member findMember = em.find(Member.class, member.getId());
-//            System.out.println("findMember.getId = " + findMember.getId());
-//            System.out.println("findMember.getUsername = " + findMember.getUsername());
-
-            Member findMember = em.getReference(Member.class, member.getId());
-            System.out.println("findMember.getClass = " + findMember.getClass());
-            System.out.println("findMember.getId = " + findMember.getId());
-            System.out.println("findMember.getUsername = " + findMember.getUsername());
+            System.out.println("m1.getClass() = " + m1.getClass());
+            System.out.println("m1 ==  m2" +(m1.getClass() == m2.getClass()));
 
 
             tx.commit();
