@@ -22,8 +22,8 @@ public class JpaMain_7_2 {
 
             Member member = new Member();
             member.setUsername("USER1");
-            member.setCreatedBy("Han");
-            member.setCreatedDate(LocalDateTime.now());
+//            member.setCreatedBy("Han");
+//            member.setCreatedDate(LocalDateTime.now());
 
             em.persist(member);
 

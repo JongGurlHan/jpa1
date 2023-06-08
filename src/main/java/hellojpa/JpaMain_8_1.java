@@ -22,22 +22,26 @@ public class JpaMain_8_1 {
 
         try{
 
+            Team team = new Team();
+            team.setName("teamA");
+            em.persist(team);
+
             Member member1 = new Member();
             member1.setUsername("member1");
+            member1.setTeam(team);
             em.persist(member1);
-
-            Member member2 = new Member();
-            member2.setUsername("member2");
-            em.persist(member2);
 
             em.flush();
             em.clear();
+            Member m = em.find(Member.class, member1.getId());
 
-            Member m1 = em.find(Member.class, member1.getId());
-            Member m2 = em.find(Member.class, member2.getId());
+            System.out.println("m" + m.getTeam().getClass());
+            System.out.println("====================================");
 
-            System.out.println("m1.getClass() = " + m1.getClass());
-            System.out.println("m1 ==  m2" +(m1.getClass() == m2.getClass()));
+            System.out.println("m.getTeam().getName(); = " + m.getTeam().getName()); //초기화
+
+            System.out.println("====================================");
+
 
 
             tx.commit();
