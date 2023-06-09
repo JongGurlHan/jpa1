@@ -1,15 +1,16 @@
 package hellojpa;
 
+import hellojpa.domain.Child;
 import hellojpa.domain.Member;
+import hellojpa.domain.Parent;
 import hellojpa.domain.Team;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import java.util.List;
 
-public class JpaMain_8_1 {
+public class JpaMain_8_2 {
     public static void main(String[] args) {
         //EntityManagerFactory는 하나만 생성해서 애플리케이션 전체에서 공유
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
@@ -22,29 +23,23 @@ public class JpaMain_8_1 {
 
         try{
 
-            Team team = new Team();
-            team.setName("teamA");
-            em.persist(team);
+            Child child1 = new Child();
+            Child child2 = new Child();
 
-            Team teamB = new Team();
-            teamB.setName("teamB");
-            em.persist(teamB);
+            Parent parent = new Parent();
+            parent.addChild(child1);
+            parent.addChild(child2);
 
-            Member member1 = new Member();
-            member1.setUsername("member1");
-            member1.setTeam(team);
-            em.persist(member1);
+            em.persist(child1);
+            em.persist(child2);
+            em.persist(parent);
 
-            Member member2 = new Member();
-            member2.setUsername("member2");
-            member2.setTeam(teamB);
-            em.persist(member2);
+
 
             em.flush();
             em.clear();
 
-            em.createQuery("select m from Member m join fetch m.team", Member.class)
-                            .getResultList();
+
 
             tx.commit();
         }catch (Exception e){
