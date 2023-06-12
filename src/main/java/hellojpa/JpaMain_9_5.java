@@ -1,6 +1,7 @@
 package hellojpa;
 
 import hellojpa.domain.Address;
+import hellojpa.domain.AddressEntity;
 import hellojpa.domain.Member;
 
 import javax.persistence.EntityManager;
@@ -29,8 +30,11 @@ public class JpaMain_9_5 {
             member.getFavoriteFoods().add("족발");
             member.getFavoriteFoods().add("피자");
 
-            member.getAddressHistory().add(new Address("old1", "street", "10000"));
-            member.getAddressHistory().add(new Address("old2", "street", "10000"));
+//            member.getAddressHistory().add(new Address("old1", "street", "10000"));
+//            member.getAddressHistory().add(new Address("old2", "street", "10000"));
+
+            member.getAddressHistory().add(new AddressEntity("old1", "street", "10000"));
+            member.getAddressHistory().add(new AddressEntity("old2", "street", "10000"));
 
             em.persist(member);
 
@@ -48,6 +52,11 @@ public class JpaMain_9_5 {
             //치킨 -> 한식
             findMember.getFavoriteFoods().remove("치킨");
             findMember.getFavoriteFoods().add("한식");
+
+
+//            findMember.getAddressHistory().remove(new Address("old1", "street", "10000"));
+//            findMember.getAddressHistory().add(new Address("newCity", "street", "10000"));
+
 
             tx.commit();
         }catch (Exception e){
