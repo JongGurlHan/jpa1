@@ -21,6 +21,10 @@ public class Member {
     @JoinColumn(name = "TEAM_ID")
     private Team team;
 
+    @Enumerated(EnumType.STRING) //Enumerated는 디폴트가 숫자기 때문에 항상 String으로 설정
+    private MemberType type;
+
+
     public void changeTeam(Team team){
         this.team = team;
         team.getMembers().add(this);
