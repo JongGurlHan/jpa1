@@ -21,7 +21,7 @@ public class JpaMain {
             em.persist(team);
 
             Member member = new Member();
-            member.setUsername("teamA");
+            member.setUsername(null);
             member.setAge(10);
             member.setType(MemberType.ADMIN);
 
@@ -31,22 +31,14 @@ public class JpaMain {
             em.flush();
             em.clear();
 
-//            String query = "select m.username, 'HELLO', TRUE from Member m " +
-//                    "where m.type = jpql.MemberType.ADMIN";
+            String query = "select coalesce(m.username, '이름 없는 회원') from Member m ";
 
-            String query = "select m.username, 'HELLO', TRUE from Member m " +
-                    "where m.type = :userType";
-
-            List <Object []> result = em.createQuery(query)
-                    .setParameter("userType", MemberType.ADMIN)
+            List<String> resultList = em.createQuery(query, String.class)
                     .getResultList();
 
-            for (Object[] objects : result) {
-                System.out.println("objects[0] = " + objects[0]);
-                System.out.println("objects[1] = " + objects[1]);
-                System.out.println("objects[2] = " + objects[2]);
+            for (String s : resultList) {
+                System.out.println("s = " + s);
             }
-
 
             tx.commit();
         }catch (Exception e){
