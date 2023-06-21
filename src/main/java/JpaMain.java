@@ -1,6 +1,7 @@
 import jpql.*;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.List;
 
 public class JpaMain {
@@ -15,29 +16,31 @@ public class JpaMain {
         tx.begin();
 
         try{
-
             Team team = new Team();
-            team.setName("teamA");
             em.persist(team);
 
-            Member member = new Member();
-            member.setUsername(null);
-            member.setAge(10);
-            member.setType(MemberType.ADMIN);
+            Member member1 = new Member();
+            member1.setUsername("관리자1");
+            member1.setTeam(team);
+            em.persist(member1);
 
-            member.changeTeam(team);
+            Member member2 = new Member();
+            member2.setUsername("관리자2");
+            member2.setTeam(team);
+            em.persist(member2);
 
-            em.persist(member);
             em.flush();
             em.clear();
 
-            String query = "select coalesce(m.username, '이름 없는 회원') from Member m ";
+            String query =  "select t.members From Team t";
 
-            List<String> resultList = em.createQuery(query, String.class)
+            List result = em.createQuery(query, Collection.class)
                     .getResultList();
 
-            for (String s : resultList) {
-                System.out.println("s = " + s);
+            System.out.println("result = " + result);
+
+            for (Object o : result) {
+                System.out.println("o = " + o);
             }
 
             tx.commit();
